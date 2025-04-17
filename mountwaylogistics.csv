@@ -1,0 +1,2 @@
+"first_pickup_date","pickup_city","pickup_state_code","pickup_zip","dropoff_city","dropoff_state_code","dropoff_zip","price_carrier_total","vehicles","ship_via_id","vehicle_runs"
+"2025-04-11","Bradley","CA","93426","Huntington Beach","CA","92646","400","[{""id"":""0"",""year"":""1992"",""model"":""Stardeck"",""make"":""Starcraft"",""type"":""Boat"",""recommended_price"":""0.00"",""deposit"":""0"",""total"":""400""}]","1","1"
