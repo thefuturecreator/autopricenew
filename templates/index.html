@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Shipping Price Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Vehicle Shipping Price Predictor</h1>
+        <div class="bg-white p-6 rounded shadow">
+            <div class="grid grid-cols-1 gap-4">
+                <input id="pickup_zip" type="text" placeholder="Pickup ZIP" class="border p-2 rounded">
+                <input id="dropoff_zip" type="text" placeholder="Dropoff ZIP" class="border p-2 rounded">
+                <input id="year" type="number" placeholder="Vehicle Year" class="border p-2 rounded">
+                <input id="make" type="text" placeholder="Vehicle Make" class="border p-2 rounded">
+                <input id="model" type="text" placeholder="Vehicle Model" class="border p-2 rounded">
+                <input id="type" type="text" placeholder="Vehicle Type (Car/SUV/Truck)" class="border p-2 rounded">
+                <input id="date" type="date" placeholder="Pickup Date" class="border p-2 rounded">
+                <select id="vehicle_runs" class="border p-2 rounded">
+                    <option value="true">Vehicle Runs</option>
+                    <option value="false">Vehicle Does Not Run</option>
+                </select>
+                <input id="num_vehicles" type="number" placeholder="Number of Vehicles" class="border p-2 rounded" value="1">
+                <button onclick="predict()" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Predict Price</button>
+            </div>
+            <div id="result" class="mt-4"></div>
+        </div>
+    </div>
+    <script>
+        async function predict() {
+            const data = {
+                pickup_zip: document.getElementById('pickup_zip').value,
+                dropoff_zip: document.getElementById('dropoff_zip').value,
+                year: document.getElementById('year').value,
+                make: document.getElementById('make').value,
+                model: document.getElementById('model').value,
+                type: document.getElementById('type').value,
+                date: document.getElementById('date').value,
+                vehicle_runs: document.getElementById('vehicle_runs').value,
+                num_vehicles: document.getElementById('num_vehicles').value
+            };
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            document.getElementById('result').innerHTML = `
+                <p><strong>Base Price:</strong> $${result.base_price}</p>
+                <p><strong>Seasonal Price:</strong> $${result.seasonal_price}</p>
+                <p><strong>Surcharges:</strong> $${result.surcharge}</p>
+                <p><strong>Surcharge Details:</strong> ${JSON.stringify(result.surcharge_details)}</p>
+                <p><strong>Total Price:</strong> $${result.total_price}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
