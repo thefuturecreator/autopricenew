@@ -1,0 +1,2 @@
+"first_pickup_date","pickup_city","pickup_state_code","pickup_zip","dropoff_city","dropoff_state_code","dropoff_zip","price_carrier_total","vehicles","ship_via_id","vehicle_runs"
+"2023-10-19","Kansas City","KS","66117","Los Angeles","CA","90065","850","[{""plate"":"""",""plate_state_code"":"""",""vin"":"""",""lot_number"":"""",""color"":"""",""year"":""2010"",""model"":""Civic Sedan"",""make"":""Honda"",""type"":""Car"",""recommended_price"":""0"",""deposit"":""230"",""total"":""1050"",""id"":""7f739c18_3c53_fc89_eeea_07f08542cffc""}]","1","1"
